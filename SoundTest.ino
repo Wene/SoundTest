@@ -1,5 +1,4 @@
 
-#define PIN 6
 #define DEBUG 13
 
 //TODO: this class actually ignores overflows of long's. 
@@ -69,16 +68,19 @@ void setup()
     digitalWrite(DEBUG, LOW);
 }
 
-Tone t(PIN);
+Tone t1(6);
+Tone t2(4);
 
 void loop()
 {
     unsigned long time = millis();
     digitalWrite(DEBUG, HIGH);
-    t.setTone(400, 7e6);
-    while(time + 8000 > millis())
+    t1.setTone(400, 7e6);
+    t2.setTone(800, 5e6);
+    while(time + 9000 > millis())
     {
-        t.play();
+        t1.play();
+        t2.play();
     }
     digitalWrite(DEBUG, LOW);
     delay(1000);
