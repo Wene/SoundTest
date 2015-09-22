@@ -1,23 +1,31 @@
 #define DEBUG 13
 #include "tone.h"
 
+Tone t1(6);
+Tone t2(7);
+unsigned long time = 0;
+unsigned long now = 0;
+int pos = 0;
+
 void setup()
 {
     pinMode(DEBUG, OUTPUT);
     digitalWrite(DEBUG, HIGH);
     delay(2000);
     digitalWrite(DEBUG, LOW);
+    time = millis();
 }
-
-Tone t1(6);
-Tone t2(7);
-unsigned long time = millis();
-int pos = 0;
 
 void loop()
 {
-    unsigned long now = millis();
-
+    now = millis();
+    if(now < 1000)                  //must be an overflow of millis() because of the 2 sec delay at start
+    {
+        if(time > now)              //only corect if necessary
+        {
+            time = 0;
+        }
+    }
     switch(pos)
     {
     case 0:

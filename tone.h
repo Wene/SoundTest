@@ -6,7 +6,6 @@ private:
     unsigned long frequency;
     unsigned long delayTime;
     unsigned long lastTime;
-    unsigned long startTime;
     bool isHigh;
     int pin;
 
