@@ -12,16 +12,15 @@ Tone::Tone(int p)
 void Tone::setTone(unsigned int freq)
 {
     frequency = freq;
-    delayTime = (1e6 / 2) / freq; //half wave length because one wave is half time high and half time low
+    delayTime = (1e6 / 2) / freq;   //half wave length because one wave is half time high and half time low
     lastTime = micros();
 }
 
 void Tone::play()
 {
     unsigned long now = micros();
-    if(now < 1e6)                   //because of the 2 second delay at start, this must be an overflow of micros()
+    if(now < 1e6)                   //Must be an overflow of micros(). The 2 sec delay at start leads to over 2e6.
     {
-        digitalWrite(13, HIGH);     //LED on to indicate detected overflow
         if(lastTime > now)          //only corect if necessary
         {
             lastTime = 0;
@@ -41,7 +40,6 @@ void Tone::play()
         }
         lastTime = now;
     }
-
 }
 
 void Tone::stop()

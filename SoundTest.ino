@@ -19,18 +19,18 @@ void setup()
 void loop()
 {
     now = millis();
-    if(now < 1000)                  //must be an overflow of millis() because of the 2 sec delay at start
+    if(now < 1000)                  //Must be an overflow of millis(). The 2 sec delay at start leads to over 2000.
     {
         if(time > now)              //only corect if necessary
         {
             time = 0;
         }
     }
-    switch(pos)
+    switch(pos)                     //loop trough the melody
     {
     case 0:
         t1.setTone(Tone::c3);
-        t2.setTone(Tone::c1);
+        t2.setTone(Tone::e1);
         pos++;
         break;
     case 1:
@@ -61,7 +61,7 @@ void loop()
             time = millis();
             t1.stop();
             t2.stop();
-            t2.setTone(Tone::e1);
+            t2.setTone(Tone::c1);
         }
         break;
     case 4:
@@ -101,7 +101,7 @@ void loop()
             time = millis();
             t1.stop();
             t2.stop();
-            t2.setTone(Tone::c1);
+            t2.setTone(Tone::d1);
         }
         break;
     case 8:
@@ -140,8 +140,6 @@ void loop()
             pos++;
             time = millis();
             t1.stop();
-            t2.stop();
-            t2.setTone(Tone::d1);
         }
         break;
     case 12:
